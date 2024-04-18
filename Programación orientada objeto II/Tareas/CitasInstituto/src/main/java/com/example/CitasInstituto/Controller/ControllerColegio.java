@@ -5,9 +5,7 @@ import com.example.CitasInstituto.Service.IServiceColegio;
 import com.example.CitasInstituto.Service.ServiceColegio;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -25,4 +23,14 @@ public class ControllerColegio {
         }
         return ResponseEntity.ok(colegios);
     }
+
+
+    @PutMapping("/update")
+    public ResponseEntity<String> update(@RequestBody Colegio colegio){
+        if(colegio.getId()==null){return ResponseEntity.badRequest().body("No existe el id");
+        }
+        serviceColegio.update(colegio);
+        return ResponseEntity.ok("Colegio actualizado");
+    }
+
 }

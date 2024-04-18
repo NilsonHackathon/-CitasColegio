@@ -8,4 +8,6 @@ import java.util.List;
 @Service
 public interface IServiceColegio {
     public List<Colegio> getAll();
+
+    void update(Colegio colegio);
 }
