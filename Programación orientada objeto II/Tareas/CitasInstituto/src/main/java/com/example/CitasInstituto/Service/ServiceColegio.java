@@ -17,4 +17,15 @@ public class ServiceColegio implements IServiceColegio {
     public List<Colegio> getAll() {
         return repoColegio.findAll();
     }
+
+    @Override
+    public Colegio crearColegio(Colegio colegio) {repoColegio.save(colegio);
+        return colegio;
+    }
+
+    public void borrarColegio(Integer id){
+        repoColegio.deleteById(id);
+    };
+
+
 }

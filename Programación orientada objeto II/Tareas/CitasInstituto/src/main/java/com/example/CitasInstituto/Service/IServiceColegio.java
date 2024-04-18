@@ -9,5 +9,7 @@ import java.util.List;
 public interface IServiceColegio {
     public List<Colegio> getAll();
 
-    void update(Colegio colegio);
+    Colegio crearColegio(Colegio colegio);
+
+    void borrarColegio(Integer id);
 }

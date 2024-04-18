@@ -16,21 +16,27 @@ public class ControllerColegio {
     private IServiceColegio serviceColegio;
 
     @GetMapping("/all")
-    public ResponseEntity<List<Colegio>> getall() {
+    public ResponseEntity<List<Colegio>> getAll() {
         List<Colegio> colegios = serviceColegio.getAll();
-        if ((colegios.isEmpty()) || (colegios == null)) {
-            return ResponseEntity.badRequest().body(colegios);
-        }
         return ResponseEntity.ok(colegios);
     }
 
-
-    @PutMapping("/update")
-    public ResponseEntity<String> update(@RequestBody Colegio colegio){
-        if(colegio.getId()==null){return ResponseEntity.badRequest().body("No existe el id");
-        }
-        serviceColegio.update(colegio);
-        return ResponseEntity.ok("Colegio actualizado");
+    @PostMapping("/create")
+    public ResponseEntity<Colegio> create(@RequestBody Colegio colegio){
+        Colegio crearColegio = serviceColegio.crearColegio(colegio);
+        return ResponseEntity.ok(crearColegio);
     }
+    @PutMapping ("/update")
+    public ResponseEntity<Colegio> update(@RequestBody Colegio colegio){
+        Colegio crearColegio = serviceColegio.crearColegio(colegio);
+        return ResponseEntity.ok(crearColegio);
+    }
+
+    @DeleteMapping("delete/{id}")
+    public ResponseEntity<String> delete(@PathVariable("id") Integer id ) {
+        serviceColegio.borrarColegio(id);
+        return ResponseEntity.ok("atrevete vete salte del closed destapate quitate el esmalte, deja taparte, que nadie va a retratarte, levantate ponte jalpe");
+    }
+
 
 }
